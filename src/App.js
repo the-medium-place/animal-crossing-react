@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import UserPage from './components/UserPage'
+import UserPage from './components/UserPage';
+import NewUser from './components/NewUser';
 import './App.css';
 
 // MATERIALIZE IMPORTS
@@ -15,7 +16,9 @@ function App() {
         <Route exact path={["/", "/home"]}>
           <UserPage />
         </Route>
-
+        <Route exact path={['/newuser']}>
+          <NewUser />
+        </Route>
 
       </Switch>
 
