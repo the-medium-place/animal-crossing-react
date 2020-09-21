@@ -509,19 +509,19 @@ export default function Index() {
         // setSearchInput(fishSearchObj[event.target.value]);
         switch (searchCategory) {
             case "fish":
-                setSearchInput(fishSearchObj[event.target.value]);
+                (fishSearchObj[event.target.value]) ? setSearchInput(fishSearchObj[event.target.value]) : setSearchInput(event.target.value);
                 break;
             case "fossils":
-                setSearchInput(fossilSearchObj[event.target.value]);
+                (fossilSearchObj[event.target.value]) ? setSearchInput(fossilSearchObj[event.target.value]) : setSearchInput(event.target.value);
                 break;
             case "bugs":
-                setSearchInput(bugSearchObj[event.target.value]);
+                (bugSearchObj[event.target.value]) ? setSearchInput(bugSearchObj[event.target.value]) : setSearchInput(event.target.value);
                 break;
             case "sea":
-                setSearchInput(seaCreatureSearchObj[event.target.value]);
+                (seaCreatureSearchObj[event.target.value]) ? setSearchInput(seaCreatureSearchObj[event.target.value]) : setSearchInput(event.target.value);
                 break;
             case "villagers":
-                setSearchInput(villagerSearchObj[event.target.value]);
+                (villagerSearchObj[event.target.value]) ? setSearchInput((villagerSearchObj[event.target.value]).replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();})) : setSearchInput(event.target.value);
                 break;
             default:
                 break;
@@ -547,9 +547,11 @@ export default function Index() {
                         </> : <Autocomplete
                                 id="Autocomplete-1"
                                 options={{
-                                    data: autoCompleteObj
+                                    data: autoCompleteObj,
+                                    onAutocomplete: function(event){setSearchInput(event)}
                                 }}
                                 placeholder="Island Search!"
+                                // onChange={handleInputChange}
                                 onChange={handleInputChange}
                                 s={12}
                             />
