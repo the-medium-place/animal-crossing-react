@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Row, Col, Autocomplete, Select, Button, Icon } from 'react-materialize';
+import M from 'materialize-css';
 import API from '../../utils/API';
 import './style.css';
+import Dashboard from '../Dashboard';
 
 // ARRAY OF SEARCHABLE FISH NAMES FROM API
 const fishNames = ["bitterling", "pale_chub", "crucian_carp", "dace", "carp", "koi", "goldfish", "pop-eyed_goldfish", "ranchu_goldfish", "killifish", "crawfish", "soft-shelled_turtle", "snapping_turtle", "tadpole", "frog", "freshwater_goby", "loach", "catfish", "giant_snakehead", "bluegill", "yellow_perch", "black_bass", "tilapia", "pike", "pond_smelt", "sweetfish", "cherry_salmon", "char", "golden_trout", "stringfish", "salmon", "king_salmon", "mitten_crab", "guppy", "nibble_fish", "angelfish", "betta", "neon_tetra", "rainbowfish", "piranha", "arowana", "dorado", "gar", "arapaima", "saddled_bichir", "sturgeon", "sea_butterfly", "sea_horse", "clownfish", "surgeonfish", "butterfly_fish", "napoleonfish", "zebra_turkeyfish", "blowfish", "puffer_fish", "anchovy", "horse_mackerel", "barred_knifejaw", "sea_bass", "red_snapper", "dab", "olive_flounder", "squid", "moray_eel", "ribbon_eel", "tuna", "blue_marlin", "giant_trevally", "mahi-mahi", "ocean_sunfish", "ray", "saw_shark", "hammerhead_shark", "great_white_shark", "whale_shark", "suckerfish", "football_fish", "oarfish", "barreleye", "coelacanth"]
@@ -441,7 +443,7 @@ const villagerSearchObj = {
     Zucker: "ocp02"
 };
 const villagerAutoComplete = {};
-
+console.log(villagerNames.length)
 villagerNames.forEach(villager => {
     // villagerSearchObj[villager] = villager;
     villagerAutoComplete[villager.split("_").join(" ")] = null;
@@ -451,6 +453,8 @@ villagerNames.forEach(villager => {
 // console.log(bugAutoComplete)
 
 export default function Index() {
+
+    M.AutoInit();
 
     const [searchInput, setSearchInput] = useState('');
     const [searchCategory, setSearchCategory] = useState();
@@ -505,7 +509,7 @@ export default function Index() {
         })
     }
 
-    function handleInputChange (event) {
+    function handleInputChange(event) {
         // setSearchInput(fishSearchObj[event.target.value]);
         switch (searchCategory) {
             case "fish":
@@ -530,7 +534,7 @@ export default function Index() {
 
     }
 
-    function handleCategoryChange (event) {
+    function handleCategoryChange(event) {
         setSearchCategory(event.target.value)
     }
 
@@ -539,12 +543,17 @@ export default function Index() {
         <div className="container green-text accent-3">
             <Row>
                 <Col s={12}>
-                    <h1 className="center-align" style={{ "fontWeight": "bold" }}>Welcome!</h1>
+                    <h1 className="center-align"
+                        style={{ "fontWeight": "bold" }}>
+                        Welcome!
+                    </h1>
                 </Col>
             </Row>
             <Row>
                 <Col s={2}>
-                    <img src="http://placekitten.com/50/50" alt="test icon" />
+                    <img src="http://placekitten.com/50/50"
+                        alt="test icon"
+                        className="circle responsive-img" />
                 </Col>
                 <Col s={10}>
                     <h4 className="center-align">
@@ -554,12 +563,11 @@ export default function Index() {
 
             </Row>
             <Row>
-                <Col sm={1} className="teal"></Col>
-                <form className="col s10 m">
+                <form className="col s12 m">
                     <Row>
-                        <div className="input-field col s5">
+                        <div className="input-field col m5 s12">
                             {(!searchCategory) ? <>
-                                <input disabled value="Select Category" id="disabled" type="text" className="validate" />
+                                <input disabled value="Select Category" id="disabled" type="text" className="validate col s12" />
                                 {/* <label for="disabled">Disabled</label> */}
                             </> : <Autocomplete
                                     id="Autocomplete-1"
@@ -568,89 +576,90 @@ export default function Index() {
                                     }}
                                     placeholder="Island Search!"
                                     onChange={handleInputChange}
+                                    s={12}
                                 />
 
                             }
 
 
                         </div>
-                            <Select
-                                id="Select-9"
-                                multiple={false}
-                                // onChange={function noRefCheck() { }}
-                                onChange={handleCategoryChange}
-                                options={{
-                                    classes: '',
-                                    dropdownOptions: {
-                                        alignment: 'left',
-                                        autoTrigger: true,
-                                        closeOnClick: true,
-                                        constrainWidth: true,
-                                        coverTrigger: true,
-                                        hover: false,
-                                        inDuration: 150,
-                                        onCloseEnd: null,
-                                        onCloseStart: null,
-                                        onOpenEnd: null,
-                                        onOpenStart: null,
-                                        outDuration: 250
-                                    }
-                                }}
+                        <Select
+                            id="Select-9"
+                            m={4}
+                            s={12}
+                            multiple={false}
+                            // onChange={function noRefCheck() { }}
+                            onChange={handleCategoryChange}
+                            options={{
+                                classes: '',
+                                dropdownOptions: {
+                                    alignment: 'left',
+                                    autoTrigger: true,
+                                    closeOnClick: true,
+                                    constrainWidth: true,
+                                    coverTrigger: true,
+                                    hover: false,
+                                    inDuration: 150,
+                                    onCloseEnd: null,
+                                    onCloseStart: null,
+                                    onOpenEnd: null,
+                                    onOpenStart: null,
+                                    outDuration: 250
+                                }
+                            }}
+                            value=""
+                            // className="col s6"
+                            >
+                            <option
+                                disabled
                                 value=""
-                                className="col s6">
-                                <option
-                                    disabled
-                                    value=""
-                                >
-                                    Category
+                            >
+                                Category
                             </option>
-                                <option value="fish">
-                                    Fish
+                            <option value="fish">
+                                Fish
                             </option>
-                                <option value="sea">
-                                    Sea Creatures
+                            <option value="sea">
+                                Sea Creatures
                             </option>
-                                <option value="bugs">
-                                    Bugs
+                            <option value="bugs">
+                                Bugs
                             </option>
-                                <option value="fossils">
-                                    Fossils
+                            <option value="fossils">
+                                Fossils
                             </option>
-                                <option value="villagers">
-                                    Villagers
+                            <option value="villagers">
+                                Villagers
                             </option>
-                                <option value="houseware">
-                                    Housewares
+                            <option value="houseware">
+                                Housewares
                             </option>
-                                <option value="wallmounted">
-                                    Wall-Mounted
+                            <option value="wallmounted">
+                                Wall-Mounted
                             </option>
-                                <option value="misc">
-                                    Miscellaneous
+                            <option value="misc">
+                                Miscellaneous
                             </option>
-                            </Select>
-                        <div className="input-field col">
+                        </Select>
+                        <div className="input-field col m3 s12">
 
-                        <Button
-                            large
-                            node="a"
-                            waves="light"
-                            onClick={handleClick}
-                        >
-                            Search!
+                            <Button
+                                large
+                                node="a"
+                                waves="light"
+                                onClick={handleClick}
+                            >
+                                Search!
                         <Icon right>
-                                search
+                                    search
                         </Icon>
-                        </Button>
+                            </Button>
                         </div>
                     </Row>
                 </form >
-                <Col sm={1} className="teal"></Col>
             </Row>
-            <Row>
-                {/* {(objArr==={}) ? <p>nothin yet</p> : <p>{JSON.stringify(objArr)}</p> 
-                } */}
-            </Row>
+
+            <Dashboard />
         </div>
     )
 }

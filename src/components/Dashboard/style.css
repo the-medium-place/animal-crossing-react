@@ -1,0 +1,25 @@
+.dash-card {
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    padding: 1rem;
+    box-shadow: 12px 15px 3rem rgb(0, 0, 0, .15);
+}
+
+.dash-card h5 {
+    font-size: 2.1vw;
+    white-space: nowrap;
+}
+
+.card-img {
+    margin: 0 auto;
+    width: 75%;
+}
+
+@media screen and (max-width: 600px){
+    .dash-card h5 {
+        font-size: 2rem;
+        white-space: nowrap;
+    } 
+}
