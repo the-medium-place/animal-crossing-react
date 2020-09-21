@@ -56,10 +56,10 @@ export default function Index() {
       Subheader
     </SideNavItem>
     <SideNavItem
-      href="#"
+      href="/search"
       waves
     >
-      Third Link With Waves
+        Search Page
     </SideNavItem>
   </SideNav>
 </div>

@@ -443,18 +443,13 @@ const villagerSearchObj = {
     Zucker: "ocp02"
 };
 const villagerAutoComplete = {};
-console.log(villagerNames.length)
+// console.log(villagerNames.length)
 villagerNames.forEach(villager => {
     // villagerSearchObj[villager] = villager;
     villagerAutoComplete[villager.split("_").join(" ")] = null;
 });
 
-// console.log(bugSearchObj)
-// console.log(bugAutoComplete)
-
 export default function Index() {
-
-    M.AutoInit();
 
     const [searchInput, setSearchInput] = useState('');
     const [searchCategory, setSearchCategory] = useState();
@@ -504,6 +499,7 @@ export default function Index() {
 
 
     function handleClick(event) {
+        // event.preventDefault();
         API.search(searchInput, searchCategory).then((res) => {
             console.log((res.data))
         })
@@ -539,127 +535,103 @@ export default function Index() {
     }
 
 
+
     return (
-        <div className="container green-text accent-3">
-            <Row>
-                <Col s={12}>
-                    <h1 className="center-align"
-                        style={{ "fontWeight": "bold" }}>
-                        Welcome!
-                    </h1>
-                </Col>
-            </Row>
-            <Row>
-                <Col s={2}>
-                    <img src="http://placekitten.com/50/50"
-                        alt="test icon"
-                        className="circle responsive-img" />
-                </Col>
-                <Col s={10}>
-                    <h4 className="center-align">
-                        TestUsername
-                    </h4>
-                </Col>
+        <Row>
+            <form className="col s12 m">
+                <Row>
+                    <div className="input-field col m5 s12">
+                        {(!searchCategory) ? <>
+                            <input disabled value="Select Category" id="disabled" type="text" className="validate col s12" />
+                            {/* <label for="disabled">Disabled</label> */}
+                        </> : <Autocomplete
+                                id="Autocomplete-1"
+                                options={{
+                                    data: autoCompleteObj
+                                }}
+                                placeholder="Island Search!"
+                                onChange={handleInputChange}
+                                s={12}
+                            />
 
-            </Row>
-            <Row>
-                <form className="col s12 m">
-                    <Row>
-                        <div className="input-field col m5 s12">
-                            {(!searchCategory) ? <>
-                                <input disabled value="Select Category" id="disabled" type="text" className="validate col s12" />
-                                {/* <label for="disabled">Disabled</label> */}
-                            </> : <Autocomplete
-                                    id="Autocomplete-1"
-                                    options={{
-                                        data: autoCompleteObj
-                                    }}
-                                    placeholder="Island Search!"
-                                    onChange={handleInputChange}
-                                    s={12}
-                                />
+                        }
 
+
+                    </div>
+                    <Select
+                        id="Select-9"
+                        m={4}
+                        s={12}
+                        multiple={false}
+                        // onChange={function noRefCheck() { }}
+                        onChange={handleCategoryChange}
+                        options={{
+                            classes: '',
+                            dropdownOptions: {
+                                alignment: 'left',
+                                autoTrigger: true,
+                                closeOnClick: true,
+                                constrainWidth: true,
+                                coverTrigger: true,
+                                hover: false,
+                                inDuration: 150,
+                                onCloseEnd: null,
+                                onCloseStart: null,
+                                onOpenEnd: null,
+                                onOpenStart: null,
+                                outDuration: 250
                             }
-
-
-                        </div>
-                        <Select
-                            id="Select-9"
-                            m={4}
-                            s={12}
-                            multiple={false}
-                            // onChange={function noRefCheck() { }}
-                            onChange={handleCategoryChange}
-                            options={{
-                                classes: '',
-                                dropdownOptions: {
-                                    alignment: 'left',
-                                    autoTrigger: true,
-                                    closeOnClick: true,
-                                    constrainWidth: true,
-                                    coverTrigger: true,
-                                    hover: false,
-                                    inDuration: 150,
-                                    onCloseEnd: null,
-                                    onCloseStart: null,
-                                    onOpenEnd: null,
-                                    onOpenStart: null,
-                                    outDuration: 250
-                                }
-                            }}
+                        }}
+                        value=""
+                    // className="col s6"
+                    >
+                        <option
+                            disabled
                             value=""
-                            // className="col s6"
-                            >
-                            <option
-                                disabled
-                                value=""
-                            >
-                                Category
+                        >
+                            Category
                             </option>
-                            <option value="fish">
-                                Fish
+                        <option value="fish">
+                            Fish
                             </option>
-                            <option value="sea">
-                                Sea Creatures
+                        <option value="sea">
+                            Sea Creatures
                             </option>
-                            <option value="bugs">
-                                Bugs
+                        <option value="bugs">
+                            Bugs
                             </option>
-                            <option value="fossils">
-                                Fossils
+                        <option value="fossils">
+                            Fossils
                             </option>
-                            <option value="villagers">
-                                Villagers
+                        <option value="villagers">
+                            Villagers
                             </option>
-                            <option value="houseware">
-                                Housewares
+                        <option value="houseware">
+                            Housewares
                             </option>
-                            <option value="wallmounted">
-                                Wall-Mounted
+                        <option value="wallmounted">
+                            Wall-Mounted
                             </option>
-                            <option value="misc">
-                                Miscellaneous
+                        <option value="misc">
+                            Miscellaneous
                             </option>
-                        </Select>
-                        <div className="input-field col m3 s12">
+                    </Select>
+                    <div className="input-field col m3 s12">
 
-                            <Button
-                                large
-                                node="a"
-                                waves="light"
-                                onClick={handleClick}
-                            >
-                                Search!
+                        <Button
+                            large
+                            node="a"
+                            waves="light"
+                            onClick={handleClick}
+                        >
+                            Search!
                         <Icon right>
-                                    search
+                                search
                         </Icon>
-                            </Button>
-                        </div>
-                    </Row>
-                </form >
-            </Row>
-
-            <Dashboard />
-        </div>
+                        </Button>
+                    </div>
+                </Row>
+            </form >
+        </Row>
     )
 }
