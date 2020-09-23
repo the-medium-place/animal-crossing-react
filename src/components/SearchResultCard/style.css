@@ -1,0 +1,13 @@
+.results-card {
+    width: 80%;
+    padding: 1.3rem;
+    border: 1px solid black;
+}
+
+.villager-icon {
+    max-width: 20%;
+}
+
+.result-img {
+    max-width: 80%;
+}

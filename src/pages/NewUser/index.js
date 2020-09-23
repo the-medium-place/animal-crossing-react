@@ -52,7 +52,7 @@ export default function Index() {
             <Row>
                 <Col s={12}>
                     <TextInput
-                        // id="TextInput-4"
+                        id="TextInput-4"
                         label="Pick a username!"
                         s={12}
                         onChange={e => setUsername(e.target.value)}
@@ -62,7 +62,7 @@ export default function Index() {
             <Row>
                 <Col s={12}>
                     <TextInput
-                        // id="TextInput-4"
+                        id="TextInput-5"
                         label="Choose a password!"
                         password
                         s={12}
@@ -73,7 +73,7 @@ export default function Index() {
             <Row>
                 <Col s={12}>
                     <TextInput
-                        // id="TextInput-4"
+                        id="TextInput-6"
                         label="E-Mail Address"
                         email
                         error="Please enter a valid email address..."
@@ -88,7 +88,7 @@ export default function Index() {
             <Row>
                 <Col s={12}>
                     <TextInput
-                        // id="TextInput-4"
+                        id="TextInput-7"
                         label="What is your island name?"
                         s={12}
                         onChange={e => setUserIslandName(e.target.value)}
