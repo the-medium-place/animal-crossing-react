@@ -516,24 +516,25 @@ export default function Index() {
             break;
         case "misc":
             autoCompleteObj = miscAutoComplete;
+            break;
         default:
             break;
 
     }
 
-    const objArr = {};
-    function searchTest(cat){
-        API.testSearch(cat).then(res => {
-            // console.log(Object.keys(res.data));
-            // console.log((res.data))
-            console.log(Object.keys(res.data))
-            setTestSearch(Object.keys(res.data))
-            // Object.keys(res.data).forEach(villager => {
-            //     // console.log(res.data[villager]['file-name'], res.data[villager].name['name-USen'])
-            //     objArr[res.data[villager].name['name-USen']] = res.data[villager]['file-name'];
-            // })
-        })
-    }
+    // const objArr = {};
+    // function searchTest(cat){
+    //     API.testSearch(cat).then(res => {
+    //         // console.log(Object.keys(res.data));
+    //         // console.log((res.data))
+    //         console.log(Object.keys(res.data))
+    //         setTestSearch(Object.keys(res.data))
+    //         // Object.keys(res.data).forEach(villager => {
+    //         //     // console.log(res.data[villager]['file-name'], res.data[villager].name['name-USen'])
+    //         //     objArr[res.data[villager].name['name-USen']] = res.data[villager]['file-name'];
+    //         // })
+    //     })
+    // }
     // TODO: CAPTURE NAMES ARRAY FOR villagers, houseware, wallmounted, misc
 
 
