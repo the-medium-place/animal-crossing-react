@@ -18,6 +18,10 @@ export default {
 
     addUser: function(userObj) {
         return axios.post(API_URL+'/api/users', userObj)
+    },
+
+    login: function(userObj) {
+        return axios.post(API_URL+'/login', userObj);
     }
 
 

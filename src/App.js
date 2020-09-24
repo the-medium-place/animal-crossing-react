@@ -4,6 +4,7 @@ import UserPage from './pages/UserPage';
 import NewUser from './pages/NewUser';
 import Nav from './components/Nav';
 import SearchPage from './pages/SearchPage';
+import UserLogin from './pages/UserLogin';
 import './App.css';
 
 // MATERIALIZE IMPORTS
@@ -25,7 +26,9 @@ function App() {
         <Route exact path={['/search']}>
           <SearchPage />
         </Route>
-
+        <Route exact path={['/login']}>
+          <UserLogin />
+        </Route>
       </Switch>
 
     </Router>

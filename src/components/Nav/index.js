@@ -61,6 +61,12 @@ export default function Index() {
     >
         Search Page
     </SideNavItem>
+    <SideNavItem
+      href="/login"
+      waves
+    >
+        Login page
+    </SideNavItem>
   </SideNav>
 </div>
     )

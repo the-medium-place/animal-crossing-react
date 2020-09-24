@@ -30,20 +30,22 @@ export default function Index(props) {
     console.log(response)
 
     return (
-        <div>
+        <div className="green-text accent-5">
             {
                 // FISH CARD
                 (props.category === 'fish') ?
                     <Row className="results-card">
                         <Row>
-                            <Col s={12}>
-                                <img src={response.icon_uri} alt="fish icon" className="col s3" />
-                                <h1 className="col s9 center-align">{response.name['name-USen']}</h1>
+                            <Col s={12} className="">
+                                <img src={response.icon_uri} alt="fish icon" className="col s3 responsive-img result-icon" />
+                                <h1 className="col s9 center-align result-title">{response.name['name-USen']}</h1>
                             </Col>
                         </Row>
-                        <Row>
-                            <img src='../../../assets/images/blathersBook.png' className="col s7 blathers-pic"/>
-                            <h4 className="col s5">Blathers Says: <br /><small>{response['museum-phrase']}</small></h4>
+                        <Row className="museum-info">
+                            <img src='../../../assets/images/blathersBook.png' className="col s5 blathers-pic"/>
+                            <div className="speech-box col s7">
+                                <p>{response['museum-phrase']}</p>
+                            </div>
 
                         </Row>
 
@@ -51,15 +53,24 @@ export default function Index(props) {
                             <h5 className="col s12">Catch Phrase: <br /><small>{response['catch-phrase']}</small></h5>
                         </Row>
                         <Row>
-                            <h5 className="col s12">Rarity: <small>{response.availability.rarity}</small></h5>
+                            <div className="col s4">
+                                <h5 className="col s12">Rarity: <small>{response.availability.rarity}</small></h5>
+                            </div>
+                            <div className="col s4">
+                                <h5>Selling Price: <small>{response.price} <img src="../../../assets/images/bellPouch.png" alt="bell pouch!" className="bell-pouch"/></small></h5>
+                            </div>
+                            <div className="col s4">
+                                <h5>Price (CJ): <small>{response['price-cj']} <img src="../../../assets/images/bellPouch.png" alt="bell pouch!" className="bell-pouch"/></small></h5>
+                            </div>
+
                         </Row>
                         <Row>
                             <h5 className="col s6">Availability Month: <br />
-                                Northern:
+                                Northern: <br/>
                                 <small>{`${monthObj[response.availability['month-array-northern'][0]]} - ${monthObj[response.availability['month-array-northern'][response.availability['month-array-northern'].length - 1]]}`}
                                 </small>
                                 <br />
-                                Southern:
+                                Southern: <br/>
                                 <small>{`${monthObj[response.availability['month-array-southern'][0]]} - ${monthObj[response.availability['month-array-southern'][response.availability['month-array-southern'].length - 1]]}`}
                                 </small>
                             </h5>
@@ -107,127 +118,73 @@ export default function Index(props) {
 
                 // BUGS CARD
                 (props.category === 'bugs') ?
-                    <Row className="results-card">
-                        <Row>
-                            <Col s={12}>
-                                <img src={response.icon_uri} alt="bug icon" className="col s3" />
-                                <h1 className="col s9 center-align">{response.name['name-USen']}</h1>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <h4 className="col s12">Blathers Says: <br /><small>{response['museum-phrase']}</small></h4>
+                <Row className="results-card">
+                <Row>
+                    <Col s={12} className="">
+                        <img src={response.icon_uri} alt="bug icon" className="col s3 responsive-img result-icon" />
+                        <h1 className="col s9 center-align result-title">{response.name['name-USen']}</h1>
+                    </Col>
+                </Row>
+                <Row className="museum-info">
+                    <img src='../../../assets/images/blathersBook.png' className="col s5 blathers-pic"/>
+                    <div className="speech-box col s7">
+                        <p>{response['museum-phrase']}</p>
+                    </div>
 
-                        </Row>
+                </Row>
 
-                        <Row>
-                            <h5 className="col s12">Catch Phrase: <br /><small>{response['catch-phrase']}</small></h5>
-                        </Row>
-                        <Row>
-                            <h5 className="col s12">Rarity: <small>{response.availability.rarity}</small></h5>
-                        </Row>
-                        <Row>
-                            <h5 className="col s6">Availability Month: <br />
-                                Northern:
-                                <small>{`${monthObj[response.availability['month-array-northern'][0]]} - ${monthObj[response.availability['month-array-northern'][response.availability['month-array-northern'].length - 1]]}`}
-                                </small>
-                                <br />
-                                Southern:
-                                <small>{`${monthObj[response.availability['month-array-southern'][0]]} - ${monthObj[response.availability['month-array-southern'][response.availability['month-array-southern'].length - 1]]}`}
-                                </small>
-                            </h5>
+                <Row>
+                    <h5 className="col s12">Catch Phrase: <br /><small>{response['catch-phrase']}</small></h5>
+                </Row>
+                <Row>
+                    <div className="col s4">
+                        <h5 className="col s12">Rarity: <small>{response.availability.rarity}</small></h5>
+                    </div>
+                    <div className="col s4">
+                        <h5>Selling Price: <small>{response.price} <img src="../../../assets/images/bellPouch.png" alt="bell pouch!" className="bell-pouch"/></small></h5>
+                    </div>
+                    <div className="col s4">
+                        <h5>Price (Flick): <small>{response['price-flick']} <img src="../../../assets/images/bellPouch.png" alt="bell pouch!" className="bell-pouch"/></small></h5>
+                    </div>
 
-                            <h5 className="col s6">Time Availability: <br />
-                                {(response.availability.isAllDay) ?
-                                    <small>All Day!</small> :
-                                    <small>{response.availability.time}</small>
-                                }
+                </Row>
+                <Row>
+                    <h5 className="col s6">Availability Month: <br />
+                        Northern: <br/>
+                        <small>{`${monthObj[response.availability['month-array-northern'][0]]} - ${monthObj[response.availability['month-array-northern'][response.availability['month-array-northern'].length - 1]]}`}
+                        </small>
+                        <br />
+                        Southern: <br/>
+                        <small>{`${monthObj[response.availability['month-array-southern'][0]]} - ${monthObj[response.availability['month-array-southern'][response.availability['month-array-southern'].length - 1]]}`}
+                        </small>
+                    </h5>
 
-                            </h5>
-                        </Row>
-                        {/* <Row>
-                            <h5 className="col s6">Availability Month: <br />
-                        Northern: {(response.availability['month-array-northern'].includes(currentMonth)) ? <small>Yes!</small> : <small>No!</small>}
-                                <br />
-                        Southern: {(response.availability['month-array-southern'].includes(currentMonth)) ? <small>Yes!</small> : <small>No!</small>}
-                            </h5>
-                            <br />
-                            <h5 className="col s6">Time Availability: <br />
-                                {(response.availability['month-array-northern'].includes(currentHour)) ? <small>Yes!</small> : <small>No!</small>}
-                                <br />
-                            </h5>
-                        </Row> */}
-                        <Row>
-                            <Col s={2}></Col>
-                            <img src={response.image_uri} alt="fish image" className="circle result-img col s8" />
-                            <Col s={2}></Col>
-                        </Row>
-                    </Row> : <></>}
-            {
+                    <h5 className="col s6">Time Availability: <br />
+                        {(response.availability.isAllDay) ?
+                            <small>All Day!</small> :
+                            <small>{response.availability.time}</small>
+                        }
 
-                // // FOSSILS CARD
-                (props.category === 'fossils') ?
-                    <Row className="results-card">
-                        <h1> fossil card</h1>
-                    </Row> : <></>}
-            {
-
-                // // SEA CREATURES CARD
-                (props.category === 'sea') ?
-                    <Row className="results-card">
-                        <Row>
-                            <Col s={12}>
-                                <img src={response.icon_uri} alt="fish icon" className="col s3" />
-                                <h1 className="col s9 center-align">{response.name['name-USen']}</h1>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <h4 className="col s12">Blathers Says: <br /><small>{response['museum-phrase']}</small></h4>
-
-                        </Row>
-
-                        <Row>
-                            <h5 className="col s12">Catch Phrase: <br /><small>{response['catch-phrase']}</small></h5>
-                        </Row>
-                        <Row>
-                            <h5 className="col s12">Rarity: <small>{response.availability.rarity}</small></h5>
-                        </Row>
-                        <Row>
-                            <h5 className="col s6">Availability Month: <br />
-                                Northern:
-                                <small>{`${monthObj[response.availability['month-array-northern'][0]]} - ${monthObj[response.availability['month-array-northern'][response.availability['month-array-northern'].length - 1]]}`}
-                                </small>
-                                <br />
-                                Southern:
-                                <small>{`${monthObj[response.availability['month-array-southern'][0]]} - ${monthObj[response.availability['month-array-southern'][response.availability['month-array-southern'].length - 1]]}`}
-                                </small>
-                            </h5>
-
-                            <h5 className="col s6">Time Availability: <br />
-                                {(response.availability.isAllDay) ?
-                                    <small>All Day!</small> :
-                                    <small>{response.availability.time}</small>
-                                }
-
-                            </h5>
-                        </Row>
-                        {/* <Row>
-                            <h5 className="col s6">Availability Month: <br />
-                        Northern: {(response.availability['month-array-northern'].includes(currentMonth)) ? <small>Yes!</small> : <small>No!</small>}
-                                <br />
-                        Southern: {(response.availability['month-array-southern'].includes(currentMonth)) ? <small>Yes!</small> : <small>No!</small>}
-                            </h5>
-                            <br />
-                            <h5 className="col s6">Time Availability: <br />
-                                {(response.availability['month-array-northern'].includes(currentHour)) ? <small>Yes!</small> : <small>No!</small>}
-                                <br />
-                            </h5>
-                        </Row> */}
-                        <Row>
-                            <Col s={2}></Col>
-                            <img src={response.image_uri} alt="fish image" className="circle result-img col s8" />
-                            <Col s={2}></Col>
-                        </Row>
-                    </Row> : <></>}
+                    </h5>
+                </Row>
+                {/* <Row>
+                    <h5 className="col s6">Availability Month: <br />
+                Northern: {(response.availability['month-array-northern'].includes(currentMonth)) ? <small>Yes!</small> : <small>No!</small>}
+                        <br />
+                Southern: {(response.availability['month-array-southern'].includes(currentMonth)) ? <small>Yes!</small> : <small>No!</small>}
+                    </h5>
+                    <br />
+                    <h5 className="col s6">Time Availability: <br />
+                        {(response.availability['month-array-northern'].includes(currentHour)) ? <small>Yes!</small> : <small>No!</small>}
+                        <br />
+                    </h5>
+                </Row> */}
+                <Row>
+                    <Col s={2}></Col>
+                    <img src={response.image_uri} alt="bug image" className="circle result-img col s8" />
+                    <Col s={2}></Col>
+                </Row>
+            </Row> : <></>}
             {
                 // // ITEM CARD
                 (props.category === 'houseware' || props.category === 'wallmounted' || props.category === 'misc') ?
