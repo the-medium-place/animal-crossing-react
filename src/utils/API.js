@@ -8,20 +8,29 @@ const API_URL = 'http://localhost:3001';
 
 export default {
 
-    search: function(query, category){
+    search: function (query, category) {
         return axios.get(`${BASEURL}/${category}/${query}`);
     },
 
-    testSearch: function(cat){
+    testSearch: function (cat) {
         return axios.get(BASEURL + '/' + cat)
     },
 
-    addUser: function(userObj) {
-        return axios.post(API_URL+'/api/users', userObj)
+    addUser: function (userObj) {
+        return axios.post(API_URL + '/api/users', userObj)
     },
 
-    login: function(userObj) {
-        return axios.post(API_URL+'/login', userObj);
+    login: function (userObj) {
+        return axios.post(API_URL + '/login', userObj);
+    },
+
+    // part of creating user
+    readSessions: function () {
+        return axios.get(`${API_URL}/readsessions`);
+    },
+
+    getUserInfo: function (user_id) {
+        return axios.get(`${API_URL}/users/${user_id}`);
     }
 
 

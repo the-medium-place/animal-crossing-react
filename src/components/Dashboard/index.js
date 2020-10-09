@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, CardPanel } from 'react-materialize';
+import { Row, Col } from 'react-materialize';
 import './style.css';
 
 export default function Index() {

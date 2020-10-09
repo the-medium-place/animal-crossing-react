@@ -4,7 +4,7 @@ import { Button, Icon, SideNav, SideNavItem, } from 'react-materialize';
 
 import './style.css';
 
-export default function Index() {
+export default function Index(props) {
     M.AutoInit();
 
 
@@ -35,7 +35,7 @@ export default function Index() {
     <SideNavItem
       user={{
         background: 'https://placeimg.com/640/480/tech',
-        email: 'jdandturk@gmail.com',
+        email: 'test@test.tst',
         image: 'http://placekitten.com/200/200',
         name: 'John Doe'
       }}

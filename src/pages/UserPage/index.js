@@ -1,15 +1,49 @@
-import React, { useState, useEffect } from 'react';
-import { Row, Col, Autocomplete, Select, Button, Icon } from 'react-materialize';
-import M from 'materialize-css';
+import React, { useState, useEffect } from 'react'
+import { Row, Col } from 'react-materialize';
 import API from '../../utils/API';
 import './style.css';
 import Dashboard from '../../components/Dashboard';
-import SearchBar from '../../components/SearchBar';
+import { useParams } from "react-router-dom";
 
 
-export default function Index() {
+export default function Index({ currentUser }) {
+    const params = useParams();
+
+    const [userState, setUserState] = useState({
+        username: '',
+        user_id: '',
+        userEmail: '',
+        islandHemisphere: '',
+        islandName: ''
+    });
 
 
+    useEffect(() => {
+        if (params.id) {
+            // console.log(params.id);
+            API.getUserInfo(params.id).then(res => {
+                if (res.data) {
+                    console.log("api response: ", res.data);
+                    setUserState(res.data)
+                    // setUserState({
+                    //     username: res.data.username,
+                    //     user_id: res.data._id,
+                    //     userEmail: res.data.userEmail,
+                    //     islandHemisphere: res.data.islandHemisphere,
+                    //     islandName: res.data.islandName
+                    // });
+                    console.log("userState: ", userState)
+                }
+            })
+        } else {
+            console.log("loading")
+        }
+        // eslint-disable-next-line
+    }, [])
+
+
+
+    console.log(currentUser);
     return (
         <div className="container green-text accent-3">
             <Row>
@@ -28,13 +62,13 @@ export default function Index() {
                 </Col>
                 <Col s={10}>
                     <h4 className="center-align">
-                        TestUsername
+                        TestUsername{(currentUser) ? ': ' + currentUser.username : ''}
                     </h4>
                 </Col>
 
             </Row>
-            
-            <SearchBar />
+
+            {/* <SearchBar /> */}
 
             <Dashboard />
         </div>

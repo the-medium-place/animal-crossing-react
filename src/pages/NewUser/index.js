@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Row, Col, TextInput, Button, RadioGroup } from 'react-materialize';
+import React, { useState } from 'react';
+import { Row, Col, TextInput, Button } from 'react-materialize';
 import M from 'materialize-css';
 import API from '../../utils/API';
 

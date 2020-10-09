@@ -7,7 +7,7 @@ const currentDate = new Date();
 const currentMonth = currentDate.getMonth()
 const currentHour = currentDate.getHours();
 
-console.log(currentDate, currentMonth, currentHour)
+// console.log(currentDate, currentMonth, currentHour)
 
 const monthObj = {
     1: 'January',
@@ -27,7 +27,7 @@ const monthObj = {
 export default function Index(props) {
 
     const response = props['response-data']
-    console.log(response)
+    // console.log(response)
 
     return (
         <div className="green-text accent-5">
@@ -42,7 +42,7 @@ export default function Index(props) {
                             </Col>
                         </Row>
                         <Row className="museum-info">
-                            <img src='../../../assets/images/blathersBook.png' className="col s5 blathers-pic"/>
+                            <img src='../../../assets/images/blathersBook.png' className="col s5 blathers-pic" alt="It's Blathers!"/>
                             <div className="speech-box col s7">
                                 <p>{response['museum-phrase']}</p>
                             </div>
@@ -126,7 +126,7 @@ export default function Index(props) {
                     </Col>
                 </Row>
                 <Row className="museum-info">
-                    <img src='../../../assets/images/blathersBook.png' className="col s5 blathers-pic"/>
+                    <img src='../../../assets/images/blathersBook.png' className="col s5 blathers-pic" alt="It's Blathers!"/>
                     <div className="speech-box col s7">
                         <p>{response['museum-phrase']}</p>
                     </div>

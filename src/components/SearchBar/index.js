@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Row, Autocomplete, Select, Button, Icon } from 'react-materialize';
-import M from 'materialize-css';
+// import M from 'materialize-css';
 import API from '../../utils/API';
 import './style.css';
 // import Dashboard from '../Dashboard';
@@ -488,7 +488,7 @@ export default function Index() {
 
     const [responseObj, setResponseObj] = useState();
 
-    const [testSearch, setTestSearch] = useState();
+    // const [testSearch, setTestSearch] = useState();
 
     let autoCompleteObj;
 
