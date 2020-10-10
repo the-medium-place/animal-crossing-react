@@ -6,44 +6,46 @@ import Dashboard from '../../components/Dashboard';
 import { useParams } from "react-router-dom";
 
 
-export default function Index({ currentUser }) {
+export default function Index({ loggedInUser }) {
     const params = useParams();
 
-    const [userState, setUserState] = useState({
-        username: '',
-        user_id: '',
-        userEmail: '',
-        islandHemisphere: '',
-        islandName: ''
-    });
+    // const [userState, setUserState] = useState({
+    //     username: '',
+    //     user_id: '',
+    //     userEmail: '',
+    //     islandHemisphere: '',
+    //     islandName: ''
+    // });
 
 
     useEffect(() => {
-        if (params.id) {
-            // console.log(params.id);
-            API.getUserInfo(params.id).then(res => {
-                if (res.data) {
-                    console.log("api response: ", res.data);
-                    setUserState(res.data)
-                    // setUserState({
-                    //     username: res.data.username,
-                    //     user_id: res.data._id,
-                    //     userEmail: res.data.userEmail,
-                    //     islandHemisphere: res.data.islandHemisphere,
-                    //     islandName: res.data.islandName
-                    // });
-                    console.log("userState: ", userState)
-                }
-            })
-        } else {
-            console.log("loading")
-        }
+        // console.log(params.id);
+        // if (params.id) {
+        //     // console.log(params.id);
+        //     API.getUserInfo(params.id).then(res => {
+        //         if (res.data) {
+        //             console.log("api response: ", res.data);
+        //             setUserState(res.data)
+        //             // setUserState({
+        //             //     username: res.data.username,
+        //             //     user_id: res.data._id,
+        //             //     userEmail: res.data.userEmail,
+        //             //     islandHemisphere: res.data.islandHemisphere,
+        //             //     islandName: res.data.islandName
+        //             // });
+        //             console.log("userState: ", userState)
+        //         }
+        //     })
+        // } else {
+        //     console.log("loading")
+        // }
         // eslint-disable-next-line
     }, [])
 
 
-
-    console.log(currentUser);
+    // const { username } = loggedInUser.user;
+    // console.log(loggedInUser);
+    // console.log(username);
     return (
         <div className="container green-text accent-3">
             <Row>
@@ -62,7 +64,7 @@ export default function Index({ currentUser }) {
                 </Col>
                 <Col s={10}>
                     <h4 className="center-align">
-                        TestUsername{(currentUser) ? ': ' + currentUser.username : ''}
+                        TestUsername{(loggedInUser.username) ? ': ' + loggedInUser.username : ''}
                     </h4>
                 </Col>
 

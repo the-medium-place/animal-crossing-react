@@ -31,7 +31,24 @@ export default {
 
     getUserInfo: function (user_id) {
         return axios.get(`${API_URL}/users/${user_id}`);
-    }
+    },
+
+    getUserFromToken: function(token) {
+        return axios.post(`${API_URL}/userFromToken`, {token: token})
+    },
+
+    saveBug: function(){},
+
+    saveFish: function(){},
+
+    saveFossil: function(){},
+    saveHouseware: function(){},
+    saveSeaCreature: function(){},
+    saveVillager: function(){},
+    saveWallMounted: function(){},
+    saveMisc: function(){},
+
+
 
 
 }

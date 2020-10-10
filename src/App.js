@@ -7,74 +7,90 @@ import SearchPage from './pages/SearchPage';
 import UserLogin from './pages/UserLogin';
 import './App.css';
 import API from './utils/API';
-import { AuthProvider, PrivateRoute } from 'react-auth-kit';
+// import { AuthProvider, PrivateRoute } from 'react-auth-kit';
 
 // MATERIALIZE IMPORTS
 import 'materialize-css/dist/css/materialize.min.css';
-// import M from 'materialize-css'; // imports materialize js
-// M.AutoInit(); // import all Materialize here?
 
 function App() {
 
   // const [id, setId] = useState()
-  // const [currentUser,setCurrentUser] = useState(false);
+  const [loggedInUser, setLoggedInUser] = useState({
+    isLoggedIn: false,
+    token: null,
+    username: null,
+    id: null,
+    islandHemisphere: null,
+    islandName: null
 
-  const [accessToken, setAccessToken] = useState();
-  const [refreshToken, setRefreshToken] = useState();
+  });
 
-  // useEffect(()=>{
-  //   API.readSessions().then(res=>{
-  //     if(res.data.user){
-  //       // console.log(res.data.user.id);
-  //       setCurrentUser(res.data.user);
-  //       setId(res.data.user.id);
-  //       // setId(res.data.user[id])
-  //     } else {
-  //       setCurrentUser(false)
-  //       // setId('');
-  //     }
-  //   })
-  // },[])
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      API.getUserFromToken(token).then(result => {
+        // console.log(result);
+        setLoggedInUser({
+          isLoggedIn: true,
+          token: token,
+          username: result.data.username,
+          id: result.data.id,
+          islandHemisphere: result.data.islandHemisphere,
+          islandName: result.data.islandName
+        })
+        // console.log(loggedInUser);
+      })
+    }
+  }, [])
+  // console.log(loggedInUser);
 
-  const loginSubmitHandler = (accessToken, refreshToken) => {
-    setAccessToken(accessToken);
-    setRefreshToken(refreshToken);
+  const loginSubmitHandler = (userObj) => {
+    // console.log(userObj);
+    setLoggedInUser({
+      isLoggedIn: true,
+      token: userObj.accessToken,
+      username: userObj.username,
+      id: userObj.id,
+      islandHemisphere: userObj.islandHemisphere,
+      islandName: userObj.islandName
+    })
   }
 
   const logoutHandle = () => {
-    setAccessToken();
-    setRefreshToken();
-  }
-  console.log("accessToken: ", accessToken)
-  console.log("refreshToken: ", refreshToken)
-  // console.log("user info: ", currentUser, '\nID: ', id)
-  return (
-    <AuthProvider authStorageType={'cookie'}
-      authStorageName={'_auth_t'}
-      authTimeStorageName={'_auth_time'}
-      stateStorageName={'_auth_state'}
-      cookieDomain={window.location.hostname}
-      cookieSecure={window.location.protocol === "https:"}>
-      <Router>
-        {/* <Nav currentUser={currentUser} logoutHandle={logoutHandle} /> */}
-        <Switch>
-          <Route exact path={['/newuser']}>
-            <NewUser />
-          </Route>
-          <Route exact path={['/', '/search']}>
-            <SearchPage />
-          </Route>
-          <Route exact path={['/login']}>
-            <UserLogin submitHandler={loginSubmitHandler} />
-          </Route>
-          {/* <Route exact path={["/users/:id"]}>
-            <UserPage />
-          </Route> */}
-          <PrivateRoute component={UserPage} path={"/users"} loginPath={'/login'} exact />
-        </Switch>
+    setLoggedInUser({
+      isLoggedIn: false,
+      token: null,
+      username: null,
+      id: null,
+      islandHemisphere: null,
+      islandName: null
 
-      </Router>
-    </AuthProvider>
+    })
+    localStorage.removeItem("token");
+  }
+
+  return (
+
+    <Router>
+      <Nav loggedInUser={loggedInUser} logoutHandle={logoutHandle} />
+      <Switch>
+        <Route exact path={['/newuser']}>
+          <NewUser />
+        </Route>
+        <Route exact path={['/search']}>
+          <SearchPage loggedInUser={loggedInUser} />
+        </Route>
+        <Route exact path={['/', '/login']}>
+          <UserLogin submitHandler={loginSubmitHandler} />
+        </Route>
+        <Route exact path={["/users/:id"]}>
+          {(loggedInUser.isLoggedIn) ? 
+          <UserPage loggedInUser={loggedInUser}/> : 
+          <UserLogin submitHandler={loginSubmitHandler} />}
+        </Route>
+      </Switch>
+
+    </Router>
   );
 }
 

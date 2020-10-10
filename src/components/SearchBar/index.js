@@ -481,7 +481,7 @@ miscNames.forEach(misc => {
     miscAutoComplete[misc.split("_").join(" ")] = null;
 });
 
-export default function Index() {
+export default function Index({ loggedInUser }) {
 
     const [searchInput, setSearchInput] = useState('');
     const [searchCategory, setSearchCategory] = useState();
@@ -717,7 +717,7 @@ export default function Index() {
             </form >
         </Row>
         {(responseObj) ? 
-        <SearchResultCard response-data={responseObj} category={searchCategory}/> : <></>
+        <SearchResultCard response-data={responseObj} category={searchCategory} loggedInUser={loggedInUser} /> : <></>
     }
         </>
     )

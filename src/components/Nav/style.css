@@ -1,5 +1,5 @@
-.nav-button {
-    /* position: fixed !important; */
+.sidenav-trigger {
+    position: fixed !important;
     top: 30px;
     left: 30px;
     /* z-index: 10 !important; */
