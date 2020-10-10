@@ -1,10 +1,12 @@
 import axios from 'axios';
 
-const BASEURL = 'http://acnhapi.com/v1';
+const BASEURL = 'https://acnhapi.com/v1';
 
-const API_URL = 'http://localhost:3001';
+// LOCAL DEV API URL
+// const API_URL = 'http://localhost:3001';
 
-
+// DEPLOYED API URL
+const API_URL = 'https://awecome-acnh-api.herokuapp.com';
 
 export default {
 
