@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import API from '../../utils/API';
 import { useHistory } from "react-router-dom"
 
 import { TextInput, Button } from 'react-materialize';
 
-import { useSignIn } from 'react-auth-kit';
+// import { useSignIn } from 'react-auth-kit';
 
 
 export default function Index(props) {
@@ -22,12 +22,25 @@ export default function Index(props) {
     // }
 
     const history = useHistory()
-    const signIn = useSignIn();
+    // const signIn = useSignIn();
 
     const [loginState, setLoginState] = useState({
         username: "",
         password: ""
     })
+
+    const [ loggedInUser, setLoggedInUser ] = useState({
+        isLoggdIn: false,
+        user: null,
+        token: null
+    })
+
+    // useEffect(() => {
+    //     const token = localStorage.getItem('token');
+    //     if(token){
+    //         console.log(token);
+    //     } 
+    // }, [])
 
     const handleInputChange = event => {
         const { name, value } = event.target;
@@ -42,22 +55,18 @@ export default function Index(props) {
         event.preventDefault();
         // console.log(loginState);
         API.login(loginState).then(res => {
-            console.log(res.data)
-            // if (res.data.accessToken && res.data.refreshToken) {
 
-            if (signIn({
-                token: res.data.accessToken,
-                expiresIn: res.data.expiresIn,
-                tokenType: "Bearer",
-                authState: res.data.loginState
-            })) {
-
-                props.submitHandler(res.data.accessToken, res.data.refreshToken)
-                // history.push(`/users/${}`);
+            if (res) {
+                // console.log(res.data)
+                localStorage.setItem("token", res.data.accessToken)
+                props.submitHandler(res.data)
+                history.push(`/users/${res.data.id}`);
 
 
             } else {
-                console.log(res.data)
+                // console.log(res.data)
+                localStorage.removeItem('token');
+
                 // let user know what went wrong
                 // toast({
                 //   message: res.data,
@@ -74,7 +83,7 @@ export default function Index(props) {
 
 
     return (
-        <div>
+        <div className="container">
             <h1>User Login</h1>
             <TextInput
                 id="TextInput-4"

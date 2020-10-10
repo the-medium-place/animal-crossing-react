@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col } from 'react-materialize';
+import { Row, Col, Button, Icon } from 'react-materialize';
 // import BlatherPic from '';
 import './style.css';
 
@@ -27,7 +27,7 @@ const monthObj = {
 export default function Index(props) {
 
     const response = props['response-data']
-    // console.log(response)
+    console.log(props.loggedInUser)
 
     return (
         <div className="green-text accent-5">
@@ -42,7 +42,7 @@ export default function Index(props) {
                             </Col>
                         </Row>
                         <Row className="museum-info">
-                            <img src='../../../assets/images/blathersBook.png' className="col s5 blathers-pic" alt="It's Blathers!"/>
+                            <img src='../../../assets/images/blathersBook.png' className="col s5 blathers-pic" alt="It's Blathers!" />
                             <div className="speech-box col s7">
                                 <p>{response['museum-phrase']}</p>
                             </div>
@@ -57,20 +57,20 @@ export default function Index(props) {
                                 <h5 className="col s12">Rarity: <small>{response.availability.rarity}</small></h5>
                             </div>
                             <div className="col s4">
-                                <h5>Selling Price: <small>{response.price} <img src="../../../assets/images/bellPouch.png" alt="bell pouch!" className="bell-pouch"/></small></h5>
+                                <h5>Selling Price: <small>{response.price} <img src="../../../assets/images/bellPouch.png" alt="bell pouch!" className="bell-pouch" /></small></h5>
                             </div>
                             <div className="col s4">
-                                <h5>Price (CJ): <small>{response['price-cj']} <img src="../../../assets/images/bellPouch.png" alt="bell pouch!" className="bell-pouch"/></small></h5>
+                                <h5>Price (CJ): <small>{response['price-cj']} <img src="../../../assets/images/bellPouch.png" alt="bell pouch!" className="bell-pouch" /></small></h5>
                             </div>
 
                         </Row>
                         <Row>
                             <h5 className="col s6">Availability Month: <br />
-                                Northern: <br/>
+                                Northern: <br />
                                 <small>{`${monthObj[response.availability['month-array-northern'][0]]} - ${monthObj[response.availability['month-array-northern'][response.availability['month-array-northern'].length - 1]]}`}
                                 </small>
                                 <br />
-                                Southern: <br/>
+                                Southern: <br />
                                 <small>{`${monthObj[response.availability['month-array-southern'][0]]} - ${monthObj[response.availability['month-array-southern'][response.availability['month-array-southern'].length - 1]]}`}
                                 </small>
                             </h5>
@@ -83,6 +83,7 @@ export default function Index(props) {
 
                             </h5>
                         </Row>
+
                         {/* <Row>
                             <h5 className="col s6">Availability Month: <br />
                         Northern: {(response.availability['month-array-northern'].includes(currentMonth)) ? <small>Yes!</small> : <small>No!</small>}
@@ -99,6 +100,21 @@ export default function Index(props) {
                             <Col s={2}></Col>
                             <img src={response.image_uri} alt="fish image" className="circle result-img col s8" />
                             <Col s={2}></Col>
+                        </Row>
+                        <Row>
+                            <Col s={11}></Col>
+                            <Col s={1}>
+                                {(props.loggedInUser.isLoggedIn) ?
+                                    <Button
+                                        className="green accent-5 nav-button"
+                                        floating
+                                        icon={<Icon>save</Icon>}
+                                        large
+                                        node="button"
+                                        waves="light"
+                                    /> : <p>Login to add to your collection!</p>
+                                }
+                            </Col>
                         </Row>
                     </Row> : <></>}
             {
@@ -118,56 +134,56 @@ export default function Index(props) {
 
                 // BUGS CARD
                 (props.category === 'bugs') ?
-                <Row className="results-card">
-                <Row>
-                    <Col s={12} className="">
-                        <img src={response.icon_uri} alt="bug icon" className="col s3 responsive-img result-icon" />
-                        <h1 className="col s9 center-align result-title">{response.name['name-USen']}</h1>
-                    </Col>
-                </Row>
-                <Row className="museum-info">
-                    <img src='../../../assets/images/blathersBook.png' className="col s5 blathers-pic" alt="It's Blathers!"/>
-                    <div className="speech-box col s7">
-                        <p>{response['museum-phrase']}</p>
-                    </div>
+                    <Row className="results-card">
+                        <Row>
+                            <Col s={12} className="">
+                                <img src={response.icon_uri} alt="bug icon" className="col s3 responsive-img result-icon" />
+                                <h1 className="col s9 center-align result-title">{response.name['name-USen']}</h1>
+                            </Col>
+                        </Row>
+                        <Row className="museum-info">
+                            <img src='../../../assets/images/blathersBook.png' className="col s5 blathers-pic" alt="It's Blathers!" />
+                            <div className="speech-box col s7">
+                                <p>{response['museum-phrase']}</p>
+                            </div>
 
-                </Row>
+                        </Row>
 
-                <Row>
-                    <h5 className="col s12">Catch Phrase: <br /><small>{response['catch-phrase']}</small></h5>
-                </Row>
-                <Row>
-                    <div className="col s4">
-                        <h5 className="col s12">Rarity: <small>{response.availability.rarity}</small></h5>
-                    </div>
-                    <div className="col s4">
-                        <h5>Selling Price: <small>{response.price} <img src="../../../assets/images/bellPouch.png" alt="bell pouch!" className="bell-pouch"/></small></h5>
-                    </div>
-                    <div className="col s4">
-                        <h5>Price (Flick): <small>{response['price-flick']} <img src="../../../assets/images/bellPouch.png" alt="bell pouch!" className="bell-pouch"/></small></h5>
-                    </div>
+                        <Row>
+                            <h5 className="col s12">Catch Phrase: <br /><small>{response['catch-phrase']}</small></h5>
+                        </Row>
+                        <Row>
+                            <div className="col s4">
+                                <h5 className="col s12">Rarity: <small>{response.availability.rarity}</small></h5>
+                            </div>
+                            <div className="col s4">
+                                <h5>Selling Price: <small>{response.price} <img src="../../../assets/images/bellPouch.png" alt="bell pouch!" className="bell-pouch" /></small></h5>
+                            </div>
+                            <div className="col s4">
+                                <h5>Price (Flick): <small>{response['price-flick']} <img src="../../../assets/images/bellPouch.png" alt="bell pouch!" className="bell-pouch" /></small></h5>
+                            </div>
 
-                </Row>
-                <Row>
-                    <h5 className="col s6">Availability Month: <br />
-                        Northern: <br/>
-                        <small>{`${monthObj[response.availability['month-array-northern'][0]]} - ${monthObj[response.availability['month-array-northern'][response.availability['month-array-northern'].length - 1]]}`}
-                        </small>
-                        <br />
-                        Southern: <br/>
-                        <small>{`${monthObj[response.availability['month-array-southern'][0]]} - ${monthObj[response.availability['month-array-southern'][response.availability['month-array-southern'].length - 1]]}`}
-                        </small>
-                    </h5>
+                        </Row>
+                        <Row>
+                            <h5 className="col s6">Availability Month: <br />
+                        Northern: <br />
+                                <small>{`${monthObj[response.availability['month-array-northern'][0]]} - ${monthObj[response.availability['month-array-northern'][response.availability['month-array-northern'].length - 1]]}`}
+                                </small>
+                                <br />
+                        Southern: <br />
+                                <small>{`${monthObj[response.availability['month-array-southern'][0]]} - ${monthObj[response.availability['month-array-southern'][response.availability['month-array-southern'].length - 1]]}`}
+                                </small>
+                            </h5>
 
-                    <h5 className="col s6">Time Availability: <br />
-                        {(response.availability.isAllDay) ?
-                            <small>All Day!</small> :
-                            <small>{response.availability.time}</small>
-                        }
+                            <h5 className="col s6">Time Availability: <br />
+                                {(response.availability.isAllDay) ?
+                                    <small>All Day!</small> :
+                                    <small>{response.availability.time}</small>
+                                }
 
-                    </h5>
-                </Row>
-                {/* <Row>
+                            </h5>
+                        </Row>
+                        {/* <Row>
                     <h5 className="col s6">Availability Month: <br />
                 Northern: {(response.availability['month-array-northern'].includes(currentMonth)) ? <small>Yes!</small> : <small>No!</small>}
                         <br />
@@ -179,12 +195,12 @@ export default function Index(props) {
                         <br />
                     </h5>
                 </Row> */}
-                <Row>
-                    <Col s={2}></Col>
-                    <img src={response.image_uri} alt="bug image" className="circle result-img col s8" />
-                    <Col s={2}></Col>
-                </Row>
-            </Row> : <></>}
+                        <Row>
+                            <Col s={2}></Col>
+                            <img src={response.image_uri} alt="bug image" className="circle result-img col s8" />
+                            <Col s={2}></Col>
+                        </Row>
+                    </Row> : <></>}
             {
                 // // ITEM CARD
                 (props.category === 'houseware' || props.category === 'wallmounted' || props.category === 'misc') ?

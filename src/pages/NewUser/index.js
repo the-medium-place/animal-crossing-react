@@ -102,13 +102,13 @@ export default function Index() {
                     <p className="col s4 center-align" style={{borderRight: "3px solid green"}}>Island Hemisphere</p>
                     <p className="col s4 center-align">
                         <label>
-                            <input class="with-gap" name="hemisphereGroup" type="radio"  value="northern" onChange={e => setUserIslandHemi(e.target.value)}/>
+                            <input className="with-gap" name="hemisphereGroup" type="radio"  value="northern" onChange={e => setUserIslandHemi(e.target.value)}/>
                             <span>Northern</span>
                         </label>
                     </p>
                     <p className="col s4 center-align">
                         <label>
-                            <input class="with-gap" name="hemisphereGroup" type="radio"  value="southern" onChange={e => setUserIslandHemi(e.target.value)}/>
+                            <input className="with-gap" name="hemisphereGroup" type="radio"  value="southern" onChange={e => setUserIslandHemi(e.target.value)}/>
                             <span>Southern</span>
                         </label>
                     </p>

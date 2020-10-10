@@ -1,73 +1,79 @@
-import React from 'react';
+import React, { Component } from 'react';
 import M from 'materialize-css';
-import { Button, Icon, SideNav, SideNavItem, } from 'react-materialize';
+import { Button, Icon, SideNav, SideNavItem } from 'react-materialize';
 
 import './style.css';
 
-export default function Index(props) {
-    M.AutoInit();
+// export default function Index(props) {
+export default class Nav extends Component {
+  // M.AutoInit();
+
+  componentDidMount() {
+    var elem = document.querySelector(".sidenav");
+    var instance = M.Sidenav.init(elem, {
+      edge: "left",
+      inDuration: 250
+    });
+  }
 
 
+
+  render() {
+    // console.log(this.props)
 
     return (
-        <div>
-  <style>
-    {`
-            #root > div > div {
-              z-index: 99999 !important;
-            }
-          `}
-  </style>
-  <SideNav
-    id="SideNav-10"
-    options={{
-      draggable: true
-    }}
-    trigger={<Button
-        className="green accent-5 nav-button"
-        floating
-        icon={<Icon>menu</Icon>}
-        large
-        node="button"
-        waves="light"
-      />}
-  >
-    <SideNavItem
-      user={{
-        background: 'https://placeimg.com/640/480/tech',
-        email: 'test@test.tst',
-        image: 'http://placekitten.com/200/200',
-        name: 'John Doe'
-      }}
-      userView
-    />
-    <SideNavItem
-      href="/newuser"
-      waves
-      icon={<Icon>cloud</Icon>}
-    >
-      New User Registration
-    </SideNavItem>
-    <SideNavItem href="/home" waves>
-      Back to Main Page
-    </SideNavItem>
-    <SideNavItem divider />
-    <SideNavItem subheader>
-      Subheader
-    </SideNavItem>
-    <SideNavItem
-      href="/search"
-      waves
-    >
-        Search Page
-    </SideNavItem>
-    <SideNavItem
-      href="/login"
-      waves
-    >
-        Login page
-    </SideNavItem>
-  </SideNav>
-</div>
+      <div>
+        <ul id="slide-out" className="sidenav">
+          <li />
+          {(this.props.loggedInUser.isLoggedIn) ?
+            <li>
+              <a>Welcome back, {this.props.loggedInUser.username}!</a>
+            </li> :
+            <li>
+              <a>Welcome! Login or Signup Below!</a>
+            </li>
+          }
+          <li>
+            <div className="divider" />
+          </li>
+          <li>
+            <a href="/search">Search the ACNH Database!</a>
+          </li>
+          <li>
+            <a href="/newuser">
+              {/* <i className="material-icons">cloud</i> */}
+              Sign Up!
+              </a>
+          </li>
+          {(!this.props.loggedInUser.isLoggedIn) ?
+            <li>
+              <a href="/login">Login</a>
+            </li> :
+            <li>
+              <a className="waves-effect" href="/login" onClick={this.props.logoutHandle}>
+                Logout
+            </a>
+            </li>
+          }
+          
+          <li>
+            <a className="waves-effect" href={"/users/" + this.props.loggedInUser.id}>
+              My Dashboard
+              </a>
+          </li>
+
+        </ul>
+        <a href="#" data-target="slide-out" className="sidenav-trigger">
+          <Button
+            className="green accent-5 nav-button"
+            floating
+            icon={<Icon>menu</Icon>}
+            large
+            node="button"
+            waves="light"
+          />
+        </a>
+      </div>
     )
+  }
 }
