@@ -44,10 +44,15 @@ export default {
     saveFish: function(){},
 
     saveFossil: function(){},
+
     saveHouseware: function(){},
+
     saveSeaCreature: function(){},
+
     saveVillager: function(){},
+
     saveWallMounted: function(){},
+    
     saveMisc: function(){},
 
 
