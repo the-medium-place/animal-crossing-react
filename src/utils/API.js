@@ -6,7 +6,7 @@ const BASEURL = 'https://acnhapi.com/v1';
 // const API_URL = 'http://localhost:3001';
 
 // DEPLOYED API URL
-const API_URL = 'https://awesome-acnh-api.herokuapp.com';
+const API_URL = 'https://awesome-anch-api.herokuapp.com';
 
 export default {
 
@@ -52,7 +52,7 @@ export default {
     saveVillager: function(){},
 
     saveWallMounted: function(){},
-    
+
     saveMisc: function(){},
 
 
