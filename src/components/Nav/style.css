@@ -1,7 +1,7 @@
 .sidenav-trigger {
-    position: fixed !important;
+    position: absolute !important;
     top: 30px;
     left: 30px;
-    /* z-index: 10 !important; */
+    z-index: 100 !important;
 }
 

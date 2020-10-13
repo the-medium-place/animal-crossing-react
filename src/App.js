@@ -5,6 +5,11 @@ import NewUser from './pages/NewUser';
 import Nav from './components/Nav';
 import SearchPage from './pages/SearchPage';
 import UserLogin from './pages/UserLogin';
+import UserFish from './pages/UserFish';
+import UserSeaCreatures from './pages/UserSeaCreatures';
+import UserBugs from './pages/UserBugs';
+import UserFossils from './pages/UserFossils';
+import UserVillagers from './pages/UserVillagers';
 import './App.css';
 import API from './utils/API';
 // import { AuthProvider, PrivateRoute } from 'react-auth-kit';
@@ -86,6 +91,31 @@ function App() {
         <Route exact path={["/users/:id"]}>
           {(loggedInUser.isLoggedIn) ? 
           <UserPage loggedInUser={loggedInUser}/> : 
+          <UserLogin submitHandler={loginSubmitHandler} />}
+        </Route>
+        <Route exact path={["/api/fish/:id"]}>
+          {(loggedInUser.isLoggedIn) ? 
+          <UserFish loggedInUser={loggedInUser}/> : 
+          <UserLogin submitHandler={loginSubmitHandler} />}
+        </Route>
+        <Route exact path={["/api/seacreatures/:id"]}>
+          {(loggedInUser.isLoggedIn) ? 
+          <UserSeaCreatures loggedInUser={loggedInUser}/> : 
+          <UserLogin submitHandler={loginSubmitHandler} />}
+        </Route>
+        <Route exact path={["/api/bugs/:id"]}>
+          {(loggedInUser.isLoggedIn) ? 
+          <UserBugs loggedInUser={loggedInUser}/> : 
+          <UserLogin submitHandler={loginSubmitHandler} />}
+        </Route>
+        <Route exact path={["/api/fossils/:id"]}>
+          {(loggedInUser.isLoggedIn) ? 
+          <UserFossils loggedInUser={loggedInUser}/> : 
+          <UserLogin submitHandler={loginSubmitHandler} />}
+        </Route>
+        <Route exact path={["/api/villagers/:id"]}>
+          {(loggedInUser.isLoggedIn) ? 
+          <UserVillagers loggedInUser={loggedInUser}/> : 
           <UserLogin submitHandler={loginSubmitHandler} />}
         </Route>
       </Switch>

@@ -12,10 +12,11 @@
     white-space: nowrap;
 }
 
-.card-img {
+.card-link {
     margin: 0 auto;
     width: 75%;
 }
+
 
 @media screen and (max-width: 600px){
     .dash-card h5 {

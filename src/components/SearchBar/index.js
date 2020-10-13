@@ -545,9 +545,46 @@ export default function Index({ loggedInUser }) {
     function handleClick() {
         // event.preventDefault();
         API.search(searchInput, searchCategory).then((res) => {
-            // console.log((res.data))
+            
+            // CONSOLE LOG FOR CHECKING DATA RETURN
+            console.log((res.data))
+
             setResponseObj(res.data);
         })
+    }
+
+    function handleSaveBtnClick(event) {
+        const category = event.target.getAttribute("id");
+        console.log("event.target: ", event.target)
+        console.log('button clicked')
+        console.log("category: ", category)
+        switch(category){
+            case 'fish':
+                API.saveFish(responseObj, loggedInUser.id);
+                break;
+            case 'bug':
+                API.saveBug(responseObj, loggedInUser.id);
+                break;
+            case 'fossil':
+                API.saveFossil(responseObj, loggedInUser.id);
+                break;
+            case 'villager':
+                API.saveVillager(responseObj, loggedInUser.id);
+                break;
+            case 'houseware':
+                API.saveHouseware(responseObj, loggedInUser.id);
+                break;
+            case 'sea':
+                API.saveSeaCreature(responseObj, loggedInUser.id);
+                break;
+            case 'wallmounted':
+                API.saveWallMounted(responseObj, loggedInUser.id);
+                break;
+            case 'misc':
+                API.saveMisc(responseObj, loggedInUser.id);
+                break;
+
+        }
     }
 
     function handleInputChange(event) {
@@ -717,7 +754,7 @@ export default function Index({ loggedInUser }) {
             </form >
         </Row>
         {(responseObj) ? 
-        <SearchResultCard response-data={responseObj} category={searchCategory} loggedInUser={loggedInUser} /> : <></>
+        <SearchResultCard response-data={responseObj} category={searchCategory} loggedInUser={loggedInUser} handleSaveBtnClick={handleSaveBtnClick}/> : <></>
     }
         </>
     )

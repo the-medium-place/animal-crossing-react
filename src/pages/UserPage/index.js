@@ -72,7 +72,7 @@ export default function Index({ loggedInUser }) {
 
             {/* <SearchBar /> */}
 
-            <Dashboard />
+            <Dashboard loggedInUser={loggedInUser}/>
         </div>
     )
 }

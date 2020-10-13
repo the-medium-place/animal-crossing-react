@@ -3,10 +3,10 @@ import axios from 'axios';
 const BASEURL = 'https://acnhapi.com/v1';
 
 // LOCAL DEV API URL
-// const API_URL = 'http://localhost:3001';
+const API_URL = 'http://localhost:3001';
 
 // DEPLOYED API URL
-const API_URL = 'https://awesome-anch-api.herokuapp.com';
+// const API_URL = 'https://awesome-anch-api.herokuapp.com';
 
 export default {
 
@@ -39,21 +39,67 @@ export default {
         return axios.post(`${API_URL}/userFromToken`, {token: token})
     },
 
-    saveBug: function(){},
+    saveBug: function(bugObj, userId){
+        console.log(bugObj)
+        return axios.post(`${API_URL}/api/bugs/${userId}`, bugObj)
+    },
 
-    saveFish: function(){},
+    getUserBugs: function(userId){
+        return axios.get(`${API_URL}/api/bugs/${userId}`)
+    },
 
-    saveFossil: function(){},
+    saveFish: function(fishObj, userId){
+        return axios.post(`${API_URL}/api/fish/${userId}`, fishObj)
+    },
 
-    saveHouseware: function(){},
+    getUserFish: function(userId){
+        return axios.get(`${API_URL}/api/fish/${userId}`)
+    },
 
-    saveSeaCreature: function(){},
+    saveFossil: function(fossilObj, userId){
+        console.log(fossilObj)
+        return axios.post(`${API_URL}/api/fossils/${userId}`, fossilObj)
+    },
 
-    saveVillager: function(){},
+    getUserFossils: function(userId){
+        return axios.get(`${API_URL}/api/fossils/${userId}`)
 
-    saveWallMounted: function(){},
+    },
 
-    saveMisc: function(){},
+    saveHouseware: function(housewareObj, userId){
+        // return axios.post(`${API_URL}/api/housewares/${userId}`, housewareObj)
+        console.log(housewareObj)
+    },
+
+    saveSeaCreature: function(seaObj, userId){
+        console.log(seaObj)
+        return axios.post(`${API_URL}/api/seacreatures/${userId}`, seaObj)
+    },
+
+    getUserSeaCreatures: function(userId){
+        return axios.get(`${API_URL}/api/seacreatures/${userId}`)
+
+    },
+
+    saveVillager: function(villagerObj, userId){
+        console.log(villagerObj)
+        return axios.post(`${API_URL}/api/villagers/${userId}`, villagerObj)
+    },
+
+    getUserVillagers: function(userId){
+        return axios.get(`${API_URL}/api/villagers/${userId}`)
+
+    },
+
+    saveWallMounted: function(wallMountedObj, userId){
+        // return axios.post(`${API_URL}/api/wallmounteds/${userId}`, wallMountedObj)
+        console.log(wallMountedObj)
+    },
+
+    saveMisc: function(miscObj, userId){
+        // return axios.post(`${API_URL}/api/misc/${userId}`, miscObj)
+        console.log(miscObj)
+    },
 
 
 
